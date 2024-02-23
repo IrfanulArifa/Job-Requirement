@@ -90,16 +90,20 @@ const App = () => {
       <header className="bg-cyan-dark bg-no-repeat bg-cover h-44 bg-header-desktop" style={{backgroundImage: `url(${image1})`}}></header>
       <main className="bg-cyan-light min-h-[80vh] pb-8 px-6">
         <div className="max-w-5xl m-auto relative -top-8 ">
-          <div className="w-full max-w-5xl min-h-[4rem] mb-10">
-          <div className="bg-white rounded-md px-7 py-4 w-full shadow-lg flex justify-between">
-              <ul className="flex flex-wrap gap-4">
-                  <Lists data={requrement} deleteFilter={deleteFilter}/>
-              </ul>
-              <button className="text-sm text-cyan-dark font-bold underline" onClick={() => resetFilter()}>
-                Clear
-              </button>
-            </div>
-          </div>
+          { (requrement.length > 0) ?  
+            <div className="w-full max-w-5xl min-h-[4rem] mb-10">
+            <div className="bg-white rounded-md px-7 py-4 w-full shadow-lg flex justify-between">
+                <ul className="flex flex-wrap gap-4">
+                  
+                    <Lists data={requrement} deleteFilter={deleteFilter}/>
+                </ul>
+                <button className="text-sm text-cyan-dark font-bold underline" onClick={() => resetFilter()}>
+                  Clear
+                </button>
+              </div>
+            </div> : null
+          }
+          
           <div>
           <ul>
             {
