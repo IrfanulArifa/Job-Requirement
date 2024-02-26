@@ -1,5 +1,6 @@
 import React from 'react';
 import Requirement from './Requirement';
+import { Link } from 'react-router-dom';
 
 const Card = ({data, requirementHandler}) => {
     const combinedArray = (data) => {
@@ -33,9 +34,11 @@ const Card = ({data, requirementHandler}) => {
                     </span> : null
                 }
               </div>
-              <a href="#" className="block my-1 text-base font-bold hover:text-cyan-dark">
-                {data.position}
-              </a>
+              <Link key={data.id} to={`/job-detail/${data.id}`}>
+                <div className="block my-1 text-base font-bold hover:text-cyan-dark">
+                      {data.position}
+                </div>
+              </Link>
               <ul className="flex text-cyan-dark-grayish gap-4 text-sm font-medium">
                 <li>{data.postedAt}</li>
                 <li className="before:content-['•'] before:mr-3 after:content-['•'] after:ml-3">

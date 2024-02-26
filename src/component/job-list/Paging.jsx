@@ -8,7 +8,7 @@ const Paging = ({pagingLength, pagingClickHandler}) => {
         newState[0] = true
         return newState
       });
-    }, [])
+    }, [pagingLength])
 
     const handleClick = (idx) => {
       

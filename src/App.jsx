@@ -1,14 +1,15 @@
 import image1 from '../public/images/bg-header-desktop.svg'
-import data from '../src/data/data.json'
-import Padding from './component/Paging';
+import { jsonData} from './data/data'
+import Padding from './component/job-list/Paging';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import Card from './component/Card';
-import Lists from './component/Lists';
+import Card from './component/job-list/Card';
+import Lists from './component/job-list/Lists';
+import Header from './component/Header';
 
 
 const App = () => {
-  const [newData, setNewData] = useState(data);
+  const [newData, setNewData] = useState(jsonData);
   const [tempArray, setTempArray] = useState(newData.slice(0,5));
   const [paging, setPaging] = useState([]);
   const [requrement, setRequirement] = useState([]);
@@ -19,14 +20,13 @@ const App = () => {
   }, [newData])
 
   useEffect(() => {
-    console.log(requrement)
     if ( requrement.length !== 0) {
       const temp = filteredArray()
       setNewData(temp)
       setTempArray(temp.slice(0,5))
     } else {
-      setNewData(data)
-      setTempArray(data.slice(0,5))
+      setNewData(jsonData)
+      setTempArray(jsonData.slice(0,5))
     }
   }, [requrement])
 
@@ -54,11 +54,10 @@ const App = () => {
 
   const addArray = (array) => {
     setRequirement([...requrement, array])
-    console.log(requrement)
   }
 
   const filteredArray = () => {
-    let realData = data
+    let realData = jsonData
     let dataAfterFilter = []
     if ( requrement !== 0 ) {
       for ( let requrements of requrement ) {
@@ -71,7 +70,7 @@ const App = () => {
         realData = realData.filter(item => dataAfterFilter.includes(item))
       }
     } else {
-      dataAfterFilter = data
+      dataAfterFilter = jsonData
     }
     return dataAfterFilter
   }
@@ -87,14 +86,13 @@ const App = () => {
 
   return (
     <>
-      <header className="bg-cyan-dark bg-no-repeat bg-cover h-44 bg-header-desktop" style={{backgroundImage: `url(${image1})`}}></header>
+      <Header/>
       <main className="bg-cyan-light min-h-[80vh] pb-8 px-6">
         <div className="max-w-5xl m-auto relative -top-8 ">
           { (requrement.length > 0) ?  
             <div className="w-full max-w-5xl min-h-[4rem] mb-10">
             <div className="bg-white rounded-md px-7 py-4 w-full shadow-lg flex justify-between">
                 <ul className="flex flex-wrap gap-4">
-                  
                     <Lists data={requrement} deleteFilter={deleteFilter}/>
                 </ul>
                 <button className="text-sm text-cyan-dark font-bold underline" onClick={() => resetFilter()}>
