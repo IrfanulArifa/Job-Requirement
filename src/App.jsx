@@ -1,5 +1,5 @@
 import image1 from '../public/images/bg-header-desktop.svg'
-import { jsonData} from './data/data'
+import { jsonData } from './data/data';
 import Padding from './component/job-list/Paging';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -32,14 +32,7 @@ const App = () => {
 
   const pagingCount = (idx) => {
     let index = idx + 1
-    let sliceFirstParam = (index-1) * 5
-    let sliceSecondParam = ( index * 5 )
-    if ( data.length % 5 === 0 ) {
-      sliceSecondParam = ( index * 5)
-    } else {
-      sliceSecondParam = ( index * 5) - 5 + (newData.length % 5)
-    }
-    setTempArray(newData.slice(sliceFirstParam , sliceSecondParam))
+    setTempArray(newData.slice((index-1) * 5 , index * 5))
   }
 
   const pagingLengthCounter = (newData) => {
