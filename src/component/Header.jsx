@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({}) => {
+
+    const logout = () => {
+      localStorage.removeItem('isLogin')
+    }
+
     return (
         <header className="flex justify-center items-center bg-no-repeat bg-cover max-h-[20vh]">
         <Link to={'..'}>
@@ -11,6 +16,9 @@ const Header = () => {
           alt="logo"
         />
         </Link>
+        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={logout}>
+          Logout
+        </button>
         </header>
     );
 }
